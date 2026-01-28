@@ -8,8 +8,8 @@
                     <th scope="col">Firstname</th>
                     <th scope="col">Middlename</th>
                     <th scope="col">Lastname</th>
-                    <th scope="col">Age</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Age</th>
                 </tr>
             </thead>
             <tbody>

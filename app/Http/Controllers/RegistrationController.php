@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\User;
 
 class RegistrationController
 {
@@ -11,6 +12,7 @@ class RegistrationController
      */
     public function index()
     {
+        return view('register');
     }
 
     /**
@@ -26,7 +28,23 @@ class RegistrationController
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'middlename' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'age' => 'required|integer|min:1',
+        ]);
+
+        User::create([
+            'firstname' => $validated['firstname'],
+            'middlename' => $validated['middlename'],
+            'lastname' => $validated['lastname'],
+            'address' => $validated['address'],
+            'age' => $validated['age'],
+        ]);
+
+        return redirect('/registration')->with('success','Successfully Registered!');
     }
 
     /**
