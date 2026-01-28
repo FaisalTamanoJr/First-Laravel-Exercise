@@ -15,11 +15,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (User::count() < 3) {
+            User::create([
+                'firstname' => 'Kinzo',
+                'middlename' => 'A.',
+                'lastname' => 'Ushiromiya',
+                'address' => 'Rokkenjima Island',
+                'age' => 95,
+            ]);
+            User::create([
+                'firstname' => 'Krauss',
+                'middlename' => 'A.',
+                'lastname' => 'Ushiromiya',
+                'address' => 'Rokkenjima Island',
+                'age' => 50,
+            ]);
+            User::create([
+                'firstname' => 'Eva',
+                'middlename' => 'A.',
+                'lastname' => 'Ushiromiya',
+                'address' => 'Japan',
+                'age' => 47,
+            ]);
+        }
     }
 }

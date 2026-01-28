@@ -4,4 +4,5 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',[UsersController::class,'index']);
+Route::redirect('/','/users');
+Route::get('/users',[UsersController::class,'index']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\User;
 
 class UsersController
 {
@@ -11,7 +12,11 @@ class UsersController
      */
     public function index()
     {
-        return view("users");
+        $users = User::latest()
+        ->take(50)
+        ->get();
+
+        return view("users", ["users" => $users]);
     }
 
     /**
