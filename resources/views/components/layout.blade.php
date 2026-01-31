@@ -7,6 +7,7 @@
     <title>{{ isset($title) ? $title . ' - 😁' : '😁' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -35,20 +36,28 @@
     <div class="display-3 text-center">{{ isset($title) ? $title : 'Webpage' }}</div>
     <hr>
 
-    @if (session('success'))
-        <div class="toast toast-top toast-center">
-            <div class="alert alert-success animate-fade-out">
-                <svg xmlns="<http://www.w3.org/2000/svg>" class="h-6 w-6 shrink-0 stroke-current" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
 
     <div class="container">
+        @if (session('success'))
+            <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+                <div id="success" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body text-center w-100">
+                            {{ session('success') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    new bootstrap.Toast(document.getElementById('success')).show();
+                })
+            </script>
+        @endif
         <div class="row">
             {{ $slot }}
         </div>

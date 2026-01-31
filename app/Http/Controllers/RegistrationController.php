@@ -44,7 +44,7 @@ class RegistrationController
             'age' => $validated['age'],
         ]);
 
-        return redirect('/registration')->with('success','Successfully Registered!');
+        return redirect('/users')->with('success','Successfully Registered!');
     }
 
     /**
